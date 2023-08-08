@@ -6,7 +6,7 @@ const CalendarDay = (props) => {
   const events = props.events;
   return (
     <div>
-      <div> {dayjs(calendarDay).format("dddd DD")} </div>
+      <div className="text-center"> {dayjs(calendarDay).format("DD")} </div>
       <div>
         {events.map((event) => {
           return dayjs(event.date).isSame(dayjs(calendarDay)) ? (

@@ -11,8 +11,14 @@ const Calendar = (props) => {
       <h1>{dayjs(props.month.monthInfo.firstDay).format("MMMM")}</h1>
       <Table striped bordered>
         <thead>
-          <tr>
-            <th> </th>
+          <tr className="text-center">
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Thursday</th>
+            <th>Wednesday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+            <th>Sunday</th>
           </tr>
         </thead>
         <tbody>
@@ -23,9 +29,11 @@ const Calendar = (props) => {
                   {
                     <CalendarDay
                       key={"calendarday_" + i + "_" + j}
-                      date={dayjs(firstDay)
-                        .add(j * 7 + i, "d")
-                        .toDate()}
+                      // TODO: WILL NOT WORK IF SUNDAY, IT WILL GET TO MONDAY 2
+                      date={dayjs(firstDay).add(
+                        j * 7 + i - (dayjs(firstDay).day() - 1),
+                        "d"
+                      )}
                       events={events}
                     />
                   }
